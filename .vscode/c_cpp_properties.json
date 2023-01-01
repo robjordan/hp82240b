@@ -1,0 +1,80 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
+{
+    "configurations": [
+        {
+            "name": "PlatformIO",
+            "includePath": [
+                "/home/jordan/Arduino/mySketches/hp82240b/include",
+                "/home/jordan/Arduino/mySketches/hp82240b/src",
+                "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/cores/megatinycore/api/deprecated",
+                "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/cores/megatinycore",
+                "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/variants/txy4",
+                "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/Comparator/src",
+                "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/EEPROM/src",
+                "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/Event/src",
+                "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/Logic/src",
+                "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/Optiboot_flasher/src",
+                "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/SD/src",
+                "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/SPI/src",
+                "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/Servo/src",
+                "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/Servo_megaTinyCore/src",
+                "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/SoftwareSerial/src",
+                "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/USERSIG/src",
+                "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/Wire/src",
+                "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/megaTinyCore/src",
+                "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/tinyNeoPixel",
+                "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/tinyNeoPixel_Static",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "/home/jordan/Arduino/mySketches/hp82240b/include",
+                    "/home/jordan/Arduino/mySketches/hp82240b/src",
+                    "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/cores/megatinycore/api/deprecated",
+                    "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/cores/megatinycore",
+                    "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/variants/txy4",
+                    "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/Comparator/src",
+                    "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/EEPROM/src",
+                    "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/Event/src",
+                    "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/Logic/src",
+                    "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/Optiboot_flasher/src",
+                    "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/SD/src",
+                    "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/SPI/src",
+                    "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/Servo/src",
+                    "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/Servo_megaTinyCore/src",
+                    "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/SoftwareSerial/src",
+                    "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/USERSIG/src",
+                    "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/Wire/src",
+                    "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/megaTinyCore/src",
+                    "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/tinyNeoPixel",
+                    "/home/jordan/.platformio/packages/framework-arduino-megaavr-megatinycore/libraries/tinyNeoPixel_Static",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=60105",
+                "ARDUINO_attinyxy4",
+                "MILLIS_USE_TIMERD0",
+                "UARTBAUD5V",
+                "F_CPU=20000000L",
+                "ARDUINO_ARCH_MEGAAVR",
+                "ARDUINO=10808",
+                "CLOCK_SOURCE=0",
+                ""
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "compilerPath": "/home/jordan/.platformio/packages/toolchain-atmelavr/bin/avr-gcc",
+            "compilerArgs": [
+                "-mmcu=attiny1614",
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}
