@@ -154,9 +154,10 @@ char symbol_to_char(symbol_t s) {
   return value;
 }
 
-void protocol_error(burst_t b, symbol_t s[], uint8_t scount) {
+void protocol_error(burst_t b, symbol_t s[], uint8_t scount, int line) {
   Serial.printf(
-    "protocol error: pulses: %d, micros: %d, symbols: ", 
+    "protocol error: line: %d, pulses: %d, micros: %d, symbols: ", 
+    line,
     b.pulses, 
     b.micros);
   for (int i=0; i<scount; i++) {
@@ -188,13 +189,13 @@ byte process_burst(burst_t b) {
   static uint8_t count = 0;
   gap_len_t gap;
 
-  if ((b.pulses < 5) || (b.pulses > 8)) {
+  if ((b.pulses < 5) || (b.pulses > 9)) {
     // ignore faulty bursts
   } else if (count == 0) {
     // The first bit is assumed to be first start bit; gap doesn't matter
     bit[count++] = S1;
   } else if ((gap = gap_len(b.micros)) == GAPERROR) {
-      protocol_error(b, bit, count);
+      protocol_error(b, bit, count, __LINE__);
       count = 0;
       // Hence we return to the home state for the FSM
   } else {
@@ -204,7 +205,7 @@ byte process_burst(burst_t b) {
       if (gap == HALFBIT) {
         bit[count++] = S2;
       } else {
-        protocol_error(b, bit, count);
+        protocol_error(b, bit, count, __LINE__);
         count = 0;
       }
       break;
@@ -213,7 +214,7 @@ byte process_burst(burst_t b) {
       if (gap == HALFBIT) {
         bit[count++] = S3;
       } else {
-        protocol_error(b, bit, count);
+        protocol_error(b, bit, count, __LINE__);
         count = 0;
       }
     break;
@@ -225,7 +226,7 @@ byte process_burst(burst_t b) {
       } else if (gap == ONEBIT) {
         bit[count++] = ZERO;
       } else {
-        protocol_error(b, bit, count);
+        protocol_error(b, bit, count, __LINE__);
         count = 0;
       }          
       break;
@@ -236,14 +237,15 @@ byte process_burst(burst_t b) {
       } else if (gap == ONEBIT) {
         bit[count++] = ONE;
       } else {
-        protocol_error(b, bit, count);
+        protocol_error(b, bit, count, __LINE__);
         count = 0;
       }      
       break;
 
     default:
       // Should never happen, log as a protocol error
-      protocol_error(b, bit, count);
+      protocol_error(b, bit, count, __LINE__);
+      count = 0;
       break;
     }
   }
