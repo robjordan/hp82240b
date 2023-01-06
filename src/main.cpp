@@ -22,17 +22,18 @@ volatile uint16_t qtail = 0;
 typedef enum {
   ZERO = 0,
   ONE = 1,
-  S1 = 2,
-  S2 = 3,
-  S3 = 4
+  START1 = 2,
+  START2 = 3,
+  START3 = 4,
+  MISSING = 5
 } symbol_t;
 
-typedef enum {
-  HALFBIT = 427,
-  ONEBIT = 854,
-  ONEANDAHALFBITS = 1282,
-  GAPERROR = 0
-} gap_len_t;
+// typedef enum {
+//   HALFBIT = 427,
+//   ONEBIT = 854,
+//   ONEANDAHALFBITS = 1282,
+//   GAPERROR = 0
+// } gap_len_t;
 
 bool qwrite(burst_t b) {
   uint16_t nexti = (qhead + 1) % Q_LENGTH;
@@ -133,9 +134,9 @@ char symbol_to_char(symbol_t s) {
 
   switch (s)
   {
-  case S1:
-  case S2:
-  case S3:
+  case START1:
+  case START2:
+  case START3:
     value = 'S';  
     break;
   
@@ -145,6 +146,10 @@ char symbol_to_char(symbol_t s) {
 
   case ONE:
     value = '1';
+    break;
+
+  case MISSING:
+    value = 'M';
     break;
   
   default:
@@ -166,18 +171,12 @@ void protocol_error(burst_t b, symbol_t s[], uint8_t scount, int line) {
   Serial.println("");
 }
 
-gap_len_t gap_len(uint16_t micros) {
-  const uint16_t leeway = 85;     // pulse intervals may be +/- this much
+// How long is the gap from the previous burst, in units of half a bit
+uint8_t gap_len(uint16_t gap_us) {
+  const uint16_t half_bit_us = 427;  // integer accuracy should be good enough
+  const uint16_t quarter_bit_us = 214;
 
-  if (abs(micros - HALFBIT) < leeway) {
-    return HALFBIT;
-  } else if (abs(micros - ONEBIT) < leeway) {
-    return ONEBIT;
-  } else if (abs(micros - ONEANDAHALFBITS) < leeway) {
-    return ONEANDAHALFBITS;
-  } else {
-    return GAPERROR;
-  }
+  return ((gap_us + quarter_bit_us) / half_bit_us);
 }
 
 // Receive a burst (pulse count and interval since last burst) and assemble
@@ -187,59 +186,94 @@ byte process_burst(burst_t b) {
   const uint8_t MAX_SYMBOLS = 15; // 3 start bits, 4 error correctn,  8 data
   static symbol_t bit[MAX_SYMBOLS];
   static uint8_t count = 0;
-  gap_len_t gap;
+  uint8_t gap;  // measured in half-bits
 
   if ((b.pulses < 5) || (b.pulses > 9)) {
     // ignore faulty bursts
   } else if (count == 0) {
     // The first bit is assumed to be first start bit; gap doesn't matter
-    bit[count++] = S1;
-  } else if ((gap = gap_len(b.micros)) == GAPERROR) {
-      protocol_error(b, bit, count, __LINE__);
-      count = 0;
-      // Hence we return to the home state for the FSM
+    bit[count++] = START1;
   } else {
-    // behaviour depends on previous bit
+    // behaviour depends on previous bit, and gap length in half-bits
+    gap = gap_len(b.micros);
     switch (bit[count-1]) {
-    case S1:
-      if (gap == HALFBIT) {
-        bit[count++] = S2;
-      } else {
+    case START1:
+      if (gap == 1) { // gap from S1 to S2 should be one half bit
+        bit[count++] = START2;
+      } else {  // we don't cater for missing start bits
         protocol_error(b, bit, count, __LINE__);
         count = 0;
       }
       break;
     
-    case S2:
-      if (gap == HALFBIT) {
-        bit[count++] = S3;
+    case START2:
+      if (gap == 1) { // gap from S2 to S3 should be one half bit
+        bit[count++] = START3;
       } else {
         protocol_error(b, bit, count, __LINE__);
         count = 0;
       }
     break;
 
-    case S3:
+    case START3:
     case ZERO:
-      if (gap == HALFBIT) {
-        bit[count++] = ONE;
-      } else if (gap == ONEBIT) {
-        bit[count++] = ZERO;
-      } else {
-        protocol_error(b, bit, count, __LINE__);
-        count = 0;
-      }          
+      switch (gap) {
+        case 1: // one half bit
+          bit[count++] = ONE;
+          break; 
+
+        case 2: // one full bit
+          bit[count++] = ZERO;
+          break;
+
+        case 3: // one and a half bits
+          // presume we missed a bit, and have skipped to a '1'
+          bit[count++] = MISSING;
+          bit[count++] = ONE;
+          break;
+
+        case 4: // two full bits
+          // presume we missed a bit, and have skipped to a '0'
+          bit[count++] = MISSING;
+          bit[count++] = ZERO;
+          break;
+
+        default:
+          // anything else is a protocol error
+          // this doesn't handle two missed bits for now
+          protocol_error(b, bit, count, __LINE__);
+          count = 0;       
+      }    
       break;
 
     case ONE:
-      if (gap == ONEANDAHALFBITS) {
-        bit[count++] = ZERO;
-      } else if (gap == ONEBIT) {
-        bit[count++] = ONE;
-      } else {
-        protocol_error(b, bit, count, __LINE__);
-        count = 0;
-      }      
+      switch (gap) {
+        case 2: // one full bit
+          bit[count++] = ONE;
+          break;
+
+        case 3: // one and a half bits
+          bit[count++] = ZERO;
+          break;
+
+        case 4: // two full bits
+          // presume we missed a bit, and have skipped to a '1'
+          bit[count++] = MISSING;
+          bit[count++] = ONE;
+          break;
+
+        case 5: // two full bits and a half bit
+          // presume we missed a bit, and have skipped to a '0'
+          bit[count++] = MISSING;
+          bit[count++] = ZERO;
+          break;
+          
+        default:
+          // anything else is a protocol error
+          // this doesn't handle two missed bits for now
+          protocol_error(b, bit, count, __LINE__);
+          count = 0;       
+      }        
       break;
 
     default:
