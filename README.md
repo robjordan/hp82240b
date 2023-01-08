@@ -10,4 +10,6 @@ Connect TX of ATTINY1614 via USB/Serial adapter, then run:
 ```
 minicom -b 115200 -8 -R utf-8 -D /dev/ttyUSB1
 ```
-
+Useful links:
+- [HP Roman character set](https://en.wikipedia.org/wiki/HP_Roman)
+- [HP Roman character set](https://hwiegman.home.xs4all.nl/fileformats/hp82240b/ptrcodes.htm))
