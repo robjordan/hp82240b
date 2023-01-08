@@ -7,6 +7,7 @@ IR receiver extracted from [HP C4013A](http://www.colin99.co.uk/extras/irda/hp_c
 ![Here's a photo](./img/PXL_20230108_184011698.jpg)
 
 Connect TX of ATTINY1614 via USB/Serial adapter, then run:
+```
 minicom -b 115200 -8 -R utf-8 -D /dev/ttyUSB1
-
+```
 
