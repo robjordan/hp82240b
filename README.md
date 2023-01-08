@@ -12,4 +12,7 @@ minicom -b 115200 -8 -R utf-8 -D /dev/ttyUSB1
 ```
 Useful links:
 - [HP Roman character set](https://en.wikipedia.org/wiki/HP_Roman)
-- [HP Roman character set](https://hwiegman.home.xs4all.nl/fileformats/hp82240b/ptrcodes.htm))
+- [HP 82240B character set](https://hwiegman.home.xs4all.nl/fileformats/hp82240b/ptrcodes.htm)
+- [Search for Unicode character codes](https://unicode-table.com/en/)
+- [Martin Hepperle's adaptation of C4113A](http://www.mh-aerotools.de/hp/red-eye/HP-IR%20Receiver%20with%20Arduino.pdf)
+- [HP82240B Technical Interfacing Guide](https://www.keesvandersanden.nl/calculators/downloads/82240bte.pdf)
