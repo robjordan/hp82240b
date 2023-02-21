@@ -15,7 +15,7 @@ char *Rom8_UTF8[] = {
     // Base index in the Roman 8 code page is 0x80
     " ",            // 128: NBSP
     "\xC3\xB7",     // 129: Division sign
-    "\xC3\x97",     // 130: Multiplication] sign
+    "\xC3\x97",     // 130: Multiplication sign
     "\xE2\x88\x9A", // 131: Square Root
     "\xE2\x88\xAB", // 132: Integral
     "\xCE\xA3",     // 133: Sigma
@@ -46,7 +46,100 @@ char *Rom8_UTF8[] = {
     "\xE1\xB5\x8F", // 158: Superscript Small Letter k
     "\xE2\x81\xBF", // 159: Superscript small letter n
     "\xE2\x88\xA0", // 160: Angle
-
+    "\xC3\x80",     // 161: A grave 
+    "\xC3\x82",     // 162: A circumflex
+    "\xC3\x88",     // 163: E grave
+    "\xC3\x8a",     // 164: E circumflex
+    "\xC3\x8B",     // 165: E diaerisis
+    "\xC3\x8E",     // 166: I circumflex
+    "\xC3\x8F",     // 167: I diaerisis
+    "\xC2\xB4",     // 168: Acute accent
+    "\x60",         // 169: Grave accent
+    "\x5e",         // 170: Circumflex / Caret 
+    "\C2\xA8",      // 171: diaerisis / Diacritic
+    "\x7e",         // 172: Tilde
+    "\xC3\x99",     // 173: U grave
+    "\xC3\x9B",     // 174: U circumflex 
+    "\xC2\xA3",     // 175: UK Pound sign 
+    "\xC2\xAF",     // 176: Macron (bar above) 
+    "\xC3\x9D",     // 177: Y acute 
+    "\xC3\xBD",     // 178: y acute
+    "\xCB\x9A",     // 179: Ring diacritic 
+    "\xC3\x87",     // 180: C cedilla
+    "\xC3\xA7",     // 181: c cedilla
+    "\xC3\x91",     // 182: N tilde
+    "\xC3\xB1",     // 183: n tilde
+    "\xC2\xA1",     // 184: Inverted exclamation mark 
+    "\xC2\xBF",     // 185: Inverted question mark 
+    "\xC2\xA4",     // 186: Currency sign
+    "\xC2\xA3",     // 187: UK Pound sign 
+    "\xC2\xA5",     // 188: Yen sign
+    "\xC2\xA7",     // 189: Section sign
+    "\xC6\x92",     // 190: f with a hook
+    "\xC2\xA2",     // 191: cent sign
+    "\xC3\xA2",     // 192: a circumflex
+    "\xC3\xAA",     // 193: e circumflex
+    "\xC3\xB4",     // 194: o circumflex
+    "\xC3\xBB",     // 195: u circumflex
+    "\xC3\xA1",     // 196: a acute
+    "\xC3\xA9",     // 197: e acute
+    "\xC3\xB3",     // 198: o acute
+    "\xC3\xBA",     // 199: u acute
+    "\xC3\xA0",     // 200: a grave
+    "\xC3\xA8",     // 201: e grave
+    "\xC3\xB2",     // 202: o grave
+    "\xC3\xB9",     // 203: u grave
+    "\xC3\xA4",     // 204: a diaerisis
+    "\xC3\xAB",     // 205: e diaerisis
+    "\xC3\xB6",     // 206: o diaerisis
+    "\xC3\xBC",     // 207: u diaerisis
+    "\xC3\x85",     // 208: A ring 
+    "\xC3\xAE",     // 209: i circumflex
+    "\xC3\x98",     // 210: O with stroke 
+    "\xC3\x86",     // 211: AE
+    "\xC3\xA5",     // 212: a ring
+    "\xC3\xAD",     // 213: i acute
+    "\xC3\xB8",     // 214: o stroke
+    "\xC3\xA6",     // 215: ae
+    "\xC3\x84",     // 216: A diaerisis
+    "\xC3\xAC",     // 217: i grave
+    "\xC3\x96",     // 218: O diaeresis
+    "\xC3\x9C",     // 219: U diaeresis
+    "\xC3\x89",     // 220: E acute
+    "\xC3\xAF",     // 221: i diaresis
+    "\xCE\xB2",     // 222: beta
+    "\xC3\x94",     // 223: O circumflex
+    "\xC3\x81",     // 224: A acute
+    "\xC3\x83",     // 225: A tilde
+    "\xC3\xA3",     // 226: a tilde
+    "\xC3\x90",     // 227: large Eth
+    "\xC3\xB0",     // 228: small Eth
+    "\xC3\x8D",     // 229: I acute
+    "\xC3\x8C",     // 230: I grave
+    "\xC3\x93",     // 231: O acute
+    "\xC3\x92",     // 232: O grave
+    "\xC3\x95",     // 233: O tilde
+    "\xC3\xB5",     // 234: o tilde
+    "\xC5\xA0",     // 235: S with caron
+    "\xC5\xA1",     // 236: s with caron
+    "\xC3\x9A",     // 237: U acute
+    "\xC5\xB8",     // 238: Y diaeresis
+    "\xC3\xBf",     // 239: y diaeresis
+    "\xC3\x9E",     // 240: Capital thorn
+    "\xC3\xBe",     // 241: Small thorn
+    "\xC2\xB7",     // 242: Middle dot
+    "\xCE\xBC",     // 243: mu
+    "\xC2\xB6",     // 244: Pilcrow (paragraph mark)
+    "\xC2\xBE",     // 245: 3/4 fraction
+    "\xC2\xAD",     // 246: Soft hyphen
+    "\xC2\xBC",     // 247: 1/4 fraction
+    "\xC2\xBD",     // 248: 1/2 fraction
+    "\xC2\xAA",     // 249: a ordinal
+    "\xC2\xBA",     // 250: o ordinal
+    "\xC2\xAB",     // 251: Left guillemet <<
+    "\xE2\x96\xA0", // 252: Black square
+    "\xC2\xBB",     // 253: Right guillemet >>
+    "\xC2\xB1"      // 254: plus-minus
 };
 
 typedef struct {
@@ -66,6 +159,12 @@ typedef enum {
   MISSING = 5
 } symbol_t;
 const uint8_t MAX_SYMBOLS = 15; // 3 start bits, 4 error correctn,  8 data
+
+typedef enum {
+  binary_mode = 0,
+  roman_mode = 1   // translate character codes > 127 into Roman8 extended text
+} mode_t;
+mode_t mode;
 
 bool qwrite(burst_t b) {
   uint16_t nexti = (qhead + 1) % Q_LENGTH;
@@ -149,9 +248,21 @@ ISR(TCB0_INT_vect){
 void setup() {
   delay(1000);
   Serial.begin(115200);
-  Serial.println("starting");
+  // Serial.println("starting");
   // LED for debugging
   VPORTA.DIR |= PIN7_bm;  //led on PA7 is an output
+  PORTA.DIRCLR |= PIN3_bm; // set PA3 as an input
+  PORTA.PIN3CTRL = PORT_PULLUPEN_bm; // pullup on 
+  // let the pullup status settle
+  delay(100);
+  if (VPORTA.IN & PIN3_bm) {
+    mode = roman_mode;
+    // Serial.println("Roman mode");
+  } else {
+    mode = binary_mode;
+    // Serial.println("Binary mode");
+  }
+
   LED_OFF();
   timer_init();
   timer_start();
@@ -567,9 +678,9 @@ byte process_burst(burst_t b) {
       }
       c = (c<<1) + bit[i];
     }
-    if (c < 128) {
+    if (c < 128 || mode == binary_mode) {
       Serial.write(c);
-    } else if (c < 161) {
+    } else if (c < 255) {
       Serial.print(Rom8_UTF8[c-128]);
     } else {
       Serial.print("\\x");
